@@ -237,7 +237,7 @@ function ChatActive({ activeUser, activeUID }) {
                       backgroundSize: "cover",
                     }}
                     className="w-[40px] h-[40px] rounded-full"></div>
-                  <p className=" ml-3 text-white">{item.name ? item.name : "Unknown"}</p>
+                  <p className=" ml-3 text-white">{item.userName ? item.userName : "Unknown"}</p>
                 </Link>
               ))}
             </div>

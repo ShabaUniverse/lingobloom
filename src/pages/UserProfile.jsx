@@ -151,13 +151,19 @@ const UserProfile = ({ activeUID }) => {
         <div className="userProfile-wrapper pt-10">
           {user && (
             <div className="flex  text-customBlack w-[700px] p-10 rounded-xl">
-              <div
-                className="w-[250px] h-[250px] rounded-full"
-                style={{
-                  backgroundImage: `url(${user.profilePicURL})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}></div>
+              {!user?.profilePicURL ? (
+                    <div className=" bg-customGrey text-black h-[250px] w-[250px] rounded-full flex justify-center items-center font-semibold">
+                      no photo, still
+                    </div>
+                  ) : (
+                    <div
+                      className=" w-[250px] h-[250px] rounded-full"
+                      style={{
+                        backgroundImage: `url(${user.profilePicURL})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}></div>
+                  )}
 
               <div className="rightSide ml-10">
                 <div>

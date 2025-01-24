@@ -89,7 +89,7 @@ const Community = ({activeUID}) => {
                   className="flex flex-col justify-center items-center  text-black px-6 py-5 mr-4 rounded-lg"
                   key={user.uid}>
                   {!user?.profilePicURL ? (
-                    <div className=" bg-white text-black h-[150px] w-[150px] rounded-full flex justify-center items-center font-semibold">
+                    <div className=" bg-customGrey text-black h-[150px] w-[150px] rounded-full flex justify-center items-center font-semibold">
                       no photo, still
                     </div>
                   ) : (
