@@ -1,181 +1,113 @@
-1. О сборке: ---------------------------------------------------------------------
+1. About the Build
+The project was built using React.js with Vite as the build tool, ensuring fast development and high performance.
 
-Проект был создан на React.js, с инструментом сборки Vite - который обеспечивает быструю разработку
-и высокую производительность.
+For the database, I used Firebase, utilizing the following services:
+Authentication – for user authorization.
+Firestore – for storing the database.
+Storage – for uploading files (images, etc.).
+For routing, I used React Router DOM (version 6).
 
+For styling, I used Tailwind CSS, a framework that allows for fast UI development.
+I also used simple CSS styles where Tailwind's utility classes were insufficient.
 
-Для базы данных использовал Firebase. Использовал сервисы Firebase, такие как:
-Authentication - для авторизации.
-Firestore - для хранения базы данных.
-Storage - для загрузки файлов (изображений и т д);
+For calls, I integrated Google Meet, providing a simple and lightweight solution for organizing calls and meetings.
 
+2. About Firebase
+All user data is stored in Firebase Firestore.
+Chats are also stored in Firestore.
+Images are stored in Firebase Storage.
 
-Для маршрутизации использовал React-Router-Dom (6 версия);
+3. About React Router DOM
+Routing is implemented using React Router DOM (version 6).
 
+A "Route Protection" mechanism has been implemented, meaning that unauthorized users cannot access pages like:
+Profile, Chat, Community, etc.—anything that requires an authorized user.
 
-Для стилей использовал Tailwind - CSS фреймворк, для того чтоб быстро создавать
-интерфейс.
-Так же использовал простые стили CSS, там где невохможно  нет быстрых классов Tailwind.
+Additionally, the Home page is only available to unauthorized users.
+If a user is logged in, they are automatically redirected to their profile upon entering the site.
 
+4. Google Meet
+During a call, the user is redirected to an external Google Meet page.
+The user must manually share the meeting link, as automatic sharing requires backend development.
 
-Для звонков использовал Google Meet. Более простой и легкий способ организации звонков
-и встреч.
+5. State Management
+I did not use state managers like Redux or MobX.
+Instead, I used React Context API and Local Storage since the project does not require extensive state management.
+There are only two key states:
+ActiveUID
+ActiveUser
+Local Storage stores user data in the browser when they log in.
+This ensures the user remains logged in even after refreshing the page.
+If the user logs out, Local Storage clears their data.
 
+6. Components
+The project consists of 12 components, with 10 being page components.
+The remaining two are either optional or permanent:
+Header – Appears on all routes. It includes navigation for:
+Authorized users: Profile, Hub, Community, Friends.
+Unauthorized users: Login.
+Pending – The smallest component, displayed during loading, such as API requests or rendering delays.
 
-2. О Firebase -----------------------------------------------------------------------------
+Main Routes:
+Other routes are secondary, such as:
+UserProfile – Displays other users' profiles.
+VideoCall – Used for making calls; originates from the chat.
 
-Все данные пользователей хранятся в Firebase Firestore.
-Чаты так же хранятся там.
+7. Hosting
+The project is hosted using Netlify.
 
-Фотографии хранятся в Firebase Storage.
+8. Folder & File Structure
+dist – The production folder. When running "npm run build", the project is compiled here for deployment.
+node_modules – The project's dependency folder.
+public – Could store images and SVG files, but was not needed.
+src – The main project folder.
 
-3. О React-Router-Dom ----------------------------------------------------------------------
+Inside src Folder:
+src/assets – Contains SVG files and images.
+src/components – Contains reusable components.
+src/firebase – Firebase configurations.
+src/pages – Contains individual page components.
+src/styles – Stores styles that couldn’t be handled by Tailwind.
 
-Маршрутизация сделана при помощи библиотеки React-Router-Dom 6 версии.
+Main Files:
+App.css – Custom CSS for specific components.
+App.jsx – The root component of the application. It wraps all other components and stores global states.
+index.css – Contains Tailwind CSS imports.
+main.jsx – The entry point of the React app. It renders App.jsx into the DOM.
+index.html – The main HTML file, containing the <root> element where React renders the app. Also includes font imports.
+package.json & package-lock.json – Define project dependencies and tools.
+tailwind.config.js – Configures the Tailwind framework.
+Other files are not particularly important.
 
-Проделана работа по "Root Protections", то есть - неавторизованным не будет видно некие страницы, такие как:
-Profile, Chat, Community и т д, все что включает нужду авторизованного пользователя.
-
-Так же главная страница Home доступна только для неавторизованных пользователей. 
-Если пользователь авторизован, при входе в сайт его перебрасывает на его профиль автоматически.
-
-4. Google Meet ------------------------------------------------------------------------------
-
-При звонке пользователя выбрасывает на внешнию страницу Google Meet. При это пользователь обязан поделиться
-ссылкой на звонок вручную, так как автоматический share требует back-end разработки.
-
-
-6. State Management --------------------------------------------------------------------------
-
-Я не стал использовать State Manager'ы такие как Redux или MobX.
-Использовал React Context API, и Local Storage. Так как проект не требовал много state'ов для работы.
-Их всего лишь два по расчету. ActiveUID и ActiveUser.
-
-Local Storage - хранит данные в браузере если пользователь авторизовался, то есть сайт сохранит его как 
-авторизованного при в следующем входе, чтобы он снова не заходил. При желании можно выйти из аккаунта,
-и Local Storage стерёт данные.
-
-7. Components ---------------------------------------------------------------------------------
-
-В итоге расчитал 12 компонентов, из них 10 страничные. Остальные два на выбор или постоянные: Header, Pending.
-
-Header - отображается во всех маршрутах. Включает в себя маршрутизацию:
-для авторизованных - Profile, Hub, Community, Friends.
-для неавторизованных - Login.
-
-Pending - наверное самый маленький компонент который отображается при загрузке, то есть при запросах
-на API и рендерах.
-
-Эти самые основные маршруты, остальные маршруты второстепенные, такие как UserProfile - профиль других
-пользователей. VideoCall - для звонков соотвественно, он исходит от чата.
-
-
-8. Hosting ------------------------------------------------------------------------------------
-
-Хостинг устроен при помощи сервиса netlify.
-
-9. Folders & Files --------------------------------------------------------------------------------------
-
-dist - это папка production. При вписывании команды "npm run build", проект собирается в эту
-папку чтоб его можно было отправить на Хостинг
-
-node-modules - папка сборки проекта. 
-
-public - тут можно было хранить изображение и SVG файлы, но не было нужды использовать.
-
-src - основная папка проекта. 
-
-    src/assets - тут SVG файлы и изображения для проекта.
-
-    src/components - отдельные компоненты
-
-    src/firebase - конфигурации Firebase сохранены тут.
-
-    src/pages - отдельные страницы сайта.
-
-    src/styles - сохранены стили которые нельзя было сделать на Tailwind.
-
-App.css - индивидуальные CSS компоненты
-
-App.jsx - выступает в роли главного корневого компонента всего приложения.
-это компонент который подключает и оборачивает все другие компоненты проекта.
-здесь так же хранятся глобальные states.
-
-index.css - тут ссылки на Tailwind CSS
-
-main.jsx - это файл который служит точкой входа в React приложение. 
-В нем происходит рендеринг  корневого компонента App.jsx в DOM-дерево.
-Этот файл связывает React компоненты с HTML разметкой, которая находится в 
-index.html
-
-index.html - это основной HTML-документ React-приложения, 
-который загружается браузером.  Его структура очень проста, 
-так как большая часть содержимого приложения генерируется динамически через React. 
-Этот файл служит точкой входа для всего приложения и содержит элемент с 
-идентификатором root, в который будет рендериться всё React-приложение.
-Тут так же находятся импорты шрифта.
-
-
-package.json & package-lock.json - эти файлы где хранятся библиотеки и основные
-инструменты которые используются для разработки приложения.
-
-tailwind.config.js - тут сборка Tailwind фреймворка.
-
-ОСТАЛЬНЫЕ ФАЙЛЫ НЕ ТРЕБУЮТ ОСОБОГО ВНИМАНИЯ.
-
-
-10.Key Functions -------------------------------------------------------------------------------------------
-
-ChatActive,jsx:
-    sendMessage - функция отправки сообщения. Получает данные активного пользователя и второго.
-    Затем он собирает их данные, и существующий чат между ними.
-    При наборе текста и нажатии на Send, приложение отправляет запрос на находку этого чата в Firestore и
-    обновляет нишу в этой базе.
-
-    unsubscribe - при входе в чат, он собирает сообщения в чате и рендерит его на странице.
-
-    getAllChatUsers - рендерит список пользователей, с которыми есть чат у активного пользователя.
-
-    getUserData - получает данные о втором пользователя (с которым идёт чат), чтобы высветить
-    его, дать понять с кем идёт чат.
-
-    getSecondUserPhotoAndName - по названию, можно понять, что функция для рендера имени и фото
-    пользователя с которым идёт чат.
-
-    handleCall - для совершения видеозвонка.
-
-    так же в начале используется useEffect, срабатывает в начале и при изменении messages, чтоб
-    прокрутить вниз чат.
-
+9. Key Functions
+ChatActive.jsx
+sendMessage – Sends a message. It gathers data from the active user and recipient, retrieves the existing chat from Firestore, and updates it when a message is sent.
+unsubscribe – Loads and renders messages in the chat.
+getAllChatUsers – Retrieves and displays a list of users with whom the active user has chatted.
+getUserData – Fetches data of the recipient (chat partner) to display their profile.
+getSecondUserPhotoAndName – Renders the recipient's name and profile picture.
+handleCall – Initiates a video call.
+useEffect – Automatically scrolls to the bottom of the chat when messages change.
 
 Community.jsx
-    Тут используются два useEffect, чтоб рендерить рекомендованных пользователей и запросы поиска.
-
+Uses two useEffect hooks to render recommended users and search requests.
 
 Friends.jsx
-    Тут функции чтобы получать данные о активном пользователе чтоб вытащить followers & following.
-    Затем, он делает из них массив и рендерит на странице.
+Retrieves followers and following of the active user, converts them into an array, and renders them on the page.
 
 Home.jsx
-    Тут нет функций, просто скелет сайта.
+No functions—just the site’s skeleton.
 
 Hub.jsx
-    Есть функция для рендера случайной цитаты для страницы и логика прогресса.
-
+Includes functions to render a random quote and handle progress logic.
 
 Profile.jsx
-    Есть функции для загрузки фотографий, и изменения данные о активном пользователе.
-    так же есть функция logout для выхода из аккаунта.
+Functions for uploading photos and updating user data.
+
+logout – Logs the user out and clears their session.
 
 UserProfile.jsx
-    Фунция для подписки/отписки, и начинании чата.
+Subscription/unsubscription functions and chat initiation functions.
 
 firebase-config.js
-    Тут конфигурации Firebase с его методами.
-
-
-
-
-
-
-
+Stores Firebase configurations and its associated methods.
