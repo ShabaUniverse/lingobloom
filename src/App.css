@@ -1,0 +1,47 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+}
+
+.def-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.pgr {
+  font-family: "Protest Guerrilla", sans-serif;
+}
+
+.some {
+  color: #8839b0;
+}
+
+.nunito-font {
+  font-family: "Nunito", sans-serif;
+}
+
+.messages::-webkit-scrollbar {
+  width: 8px; /* Ширина вертикального скролла */
+  height: 8px; /* Высота горизонтального скролла */
+}
+
+/* Стили для дорожки (фон скроллбара) */
+.messages::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Цвет дорожки */
+  border-radius: 10px;
+}
+
+/* Стили для ползунка (то, что двигается) */
+.messages::-webkit-scrollbar-thumb {
+  background-color: #b0d6fc; /* Цвет ползунка */
+  border-radius: 10px; /* Скругленные края */
+  border: 2px solid #ffffff; /* Белая рамка вокруг */
+}
+
+/* Стили для ползунка при наведении */
+.messages::-webkit-scrollbar-thumb:hover {
+  background-color: #b0d6fc; /* Изменение цвета при наведении */
+}
